@@ -26,15 +26,15 @@ public class FormTest extends WebDriverBaseTest {
         assertNotNull(login, "Нужно передать -Dlogin=...");
         assertNotNull(password, "Нужно передать -Dpassword=...");
 
-        String userName = login;
         String email = login.contains("@") ? login : "user_" + login + "@example.com";
         String birthDate = "1991-02-10";
         String languageValue = "intermediate";
+        String baseUrl = System.getProperty("baseUrl", "https://otus.home.kartushin.su");
 
         log.info("Open form page");
-        driver.get("https://otus.home.kartushin.su/form.html");
+        driver.get(baseUrl + "/form.html");
 
-        driver.findElement(By.id("username")).sendKeys(userName);
+        driver.findElement(By.id("username")).sendKeys(login);
         driver.findElement(By.id("email")).sendKeys(email);
 
         driver.findElement(By.id("password")).sendKeys(password);
@@ -61,7 +61,7 @@ public class FormTest extends WebDriverBaseTest {
         String text = driver.findElement(By.id("output")).getText();
 
         assertAll(
-                () -> assertTrue(text.contains(userName), "Имя не найдено в output"),
+                () -> assertTrue(text.contains(login), "Имя не найдено в output"),
                 () -> assertTrue(text.contains(email), "Email не найден в output"),
                 () -> assertTrue(text.contains(birthDate), "Дата рождения не найдена в output"),
                 () -> assertTrue(text.contains(languageValue), "Уровень языка (value) не найден в output")

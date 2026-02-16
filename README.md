@@ -5,4 +5,4 @@
 
 ## Run tests (Maven Wrapper)
 ```bash
-./mvnw test -Dlogin=myLogin -Dpassword=myPassword
+./mvnw test -DbaseUrl=https://otus.home.kartushin.su -Dlogin=myLogin -Dpassword=myPassword
