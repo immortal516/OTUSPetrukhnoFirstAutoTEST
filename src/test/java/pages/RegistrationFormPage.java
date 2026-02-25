@@ -59,9 +59,8 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage submit() {
+    public void submit() {
         driver.findElement(By.cssSelector("input[type='submit']")).click();
-        return this;
     }
 
     public String outputText() {
